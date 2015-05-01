@@ -38,6 +38,7 @@ models = require('./models');
 //import routing
 require('./routing/callback');
 require('./routing/users');
+require('./routing/pdv');
 
 
 app.listen(8080);
