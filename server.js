@@ -4,6 +4,7 @@ Promise = require('bluebird');
 mongoose = Promise.promisifyAll(require('mongoose'));
 fs = Promise.promisifyAll(require('fs'));
 var bodyParser = require('body-parser');
+var logger = require('morgan');
 var exphbs  = require('express-handlebars');
 
 app = express();
@@ -28,16 +29,17 @@ app.set('view engine', 'handlebars');
 logLib = require('./lib/log');
 
 //config
+app.use(logger('combined'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-mongoose.connect('mongodb://localhost/book_phone');
+mongoose.connect('mongodb://localhost/pdv');
 
 //import models
 models = require('./models');
 
 //import routing
-require('./routing/callback');
-require('./routing/users');
+//require('./routing/callback');
+//require('./routing/users');
 require('./routing/pdv');
 
 

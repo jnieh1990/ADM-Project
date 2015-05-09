@@ -1,8 +1,16 @@
-exports.index = function (req, res) {
+ecouteDb = models.Pdv.on('beforeInsert', function(pdv) {
+
+    console.log('A new book "%s" was inserted', pdv.libelle);
+});
+
+
+exports.index = index;
+    index = function (req, res) {
     var returnResponse = function(collection){
         //res.render('pdvs', { pdvs : collection });
         res.json(collection);
     };
+
     models.Pdv.findAsync()
         .then(logLib.logContent)
         .then(returnResponse)
@@ -23,3 +31,21 @@ exports.one = function (req, res) {
     ;
 
 };
+
+
+exports.create = function (req, res) {
+    var returnResponse = function(obj){
+        res.json(obj);
+    };
+    models.Pdv(req.body).saveAsync()
+        .then(logLib.logContent)
+        .then(returnResponse())
+    ;
+};
+
+ecouteDb = models.Pdv.on('beforeInsert', function(pdv) {
+
+    console.log('A new book "%s" was inserted', pdv.libelle);
+});
+
+
