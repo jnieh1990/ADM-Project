@@ -1,11 +1,4 @@
-ecouteDb = models.Pdv.on('beforeInsert', function(pdv) {
-
-    console.log('A new book "%s" was inserted', pdv.libelle);
-});
-
-
-exports.index = index;
-    index = function (req, res) {
+index = function (req, res) {
     var returnResponse = function(collection){
         //res.render('pdvs', { pdvs : collection });
         res.json(collection);
@@ -16,6 +9,8 @@ exports.index = index;
         .then(returnResponse)
     ;
 };
+
+    exports.index = index;
 
 exports.one = function (req, res) {
     var options = {libelle : "Rabat"};
